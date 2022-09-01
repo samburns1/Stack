@@ -20,14 +20,17 @@ public class Stack {
         top++;
     }
 
-    public int pop(){
+    public int pop() throws RuntimeException {
         
+        if(empty()){
+            throw(new RuntimeException("Stack underflow"));
+        }
+
         int tmp = stackarr[--top];
         stackarr[top] = 0;
         
 
         return tmp;
+    
     }
-
-
 }

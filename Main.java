@@ -10,6 +10,7 @@ class Main{
         testConstructStack();
         testPush();
         testPushPushPopPushPushPop();
+        testPopWhenEmpty();
         System.out.println(" Passed: " + pass + " || Failed: " + fail);
     }
 
@@ -21,6 +22,26 @@ class Main{
             fail++;
             LOGGER.log(Level.WARNING, "Failed stack constructor, expected empty got not empty");
         }
+    }
+
+
+    static void testPopWhenEmpty(){
+
+        Stack dishes = new Stack(5);
+        boolean hadException = false;
+        try{
+        dishes.pop();
+        }
+        catch(RuntimeException e) {
+            pass++;
+            hadException = true;
+        }
+        if(!hadException){
+            fail++;
+            LOGGER.log(Level.WARNING, "Failed testPopWhenEmpty expected an exception but DID NOT GET ONE.");
+        }
+    
+        
     }
 
 
@@ -46,12 +67,6 @@ class Main{
             fail++;
             LOGGER.log(Level.WARNING, "Failed multi push pop, expected " + expected + " got " + actual);
         }
-
-        dishes.pop();
-        dishes.pop();
-        dishes.pop();
-        dishes.pop();
-        dishes.pop();
 
     }
 
