@@ -1,8 +1,10 @@
 public class Stack {
     private int top;
     private int stackarr[];
+    private int maxsize;
 
     public Stack(int maxsize){
+        this.maxsize = maxsize;
         stackarr = new int[maxsize];
         top = 0;
     }
@@ -15,7 +17,8 @@ public class Stack {
         return top == 0;
     }
 
-    public void push(int onstack){
+    public void push(int onstack) throws RuntimeException{
+        if(top > maxsize-1) throw(new RuntimeException("Stack overflow exception!"));
         stackarr[top] = onstack;
         top++;
     }
@@ -23,7 +26,7 @@ public class Stack {
     public int pop() throws RuntimeException {
         
         if(empty()){
-            throw(new RuntimeException("Stack underflow"));
+            throw(new RuntimeException("Stack underflow!!"));
         }
 
         int tmp = stackarr[--top];
