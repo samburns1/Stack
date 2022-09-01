@@ -9,7 +9,8 @@ class Main{
 
         testConstructStack();
         testPush();
-        System.out.println(" Passed: " + pass + "|| Failed: " + fail);
+        testPushPushPopPushPushPop();
+        System.out.println(" Passed: " + pass + " || Failed: " + fail);
     }
 
 
@@ -23,6 +24,38 @@ class Main{
     }
 
 
+    static void testPushPushPopPushPushPop(){
+        Stack dishes = new Stack(5);
+        dishes.push(1);
+        dishes.push(2);
+        int actual = dishes.pop();
+        int expected = 2;
+        if(actual == expected) pass++;
+
+        else {
+            fail++;
+            LOGGER.log(Level.WARNING, "Failed multi push pop, expected " + expected + " got " + actual);
+        }
+        dishes.push(3);
+        dishes.push(4);
+        actual = dishes.pop();
+        expected = 4;
+        if(actual == expected) pass++;
+
+        else {
+            fail++;
+            LOGGER.log(Level.WARNING, "Failed multi push pop, expected " + expected + " got " + actual);
+        }
+
+        dishes.pop();
+        dishes.pop();
+        dishes.pop();
+        dishes.pop();
+        dishes.pop();
+
+    }
+
+
     static void testPush(){
         Stack dishes = new Stack(5);
         dishes.push(31);
@@ -31,5 +64,20 @@ class Main{
             fail++;
             LOGGER.log(Level.WARNING, "Failed stack push, expected not empty got empty");
         }
+
+
+        int actual = dishes.pop();
+        if(actual == 31) pass++;
+
+        else {
+            fail++;
+            LOGGER.log(Level.WARNING, "Failed stack pop (testing push), expected 31 got " + actual);
+        }
+
+    
     }
+
+
+
+
 }

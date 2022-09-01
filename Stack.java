@@ -16,12 +16,15 @@ public class Stack {
     }
 
     public void push(int onstack){
-        stackarr[top++] = onstack;
+        stackarr[top] = onstack;
+        top++;
     }
 
     public int pop(){
-        int tmp = stackarr[top];
-
+        
+        int tmp = stackarr[--top];
+        stackarr[top] = 0;
+        
 
         return tmp;
     }
