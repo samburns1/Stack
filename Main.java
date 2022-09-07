@@ -7,11 +7,11 @@ class Main{
     public static void main(String[]args){
         System.out.println("hello world");
 
-        testConstructStack();
-        testPush();
+        testConstructStack(); //
+        testPush(); //
         testPushOverflow();
-        testPushPushPopPushPushPop();
-        testPopWhenEmpty();
+        testPushPushPopPushPushPop(); //
+        testPopWhenEmpty(); //
         
         System.out.println(" Passed: " + pass + " || Failed: " + fail);
     }
@@ -31,16 +31,23 @@ class Main{
         Stack dishes = new Stack(3);
         dishes.push(1);
         dishes.push(2);
-        dishes.push(3);
+        try{dishes.push(3);}
+        catch(RuntimeException error){
+            hadException = true;
+            fail++;
+            System.out.println(error.getMessage()); 
+        }
+        if(!hadException) pass++;
         try{dishes.push(4);
         }
-        catch(RuntimeException e){
+        catch(RuntimeException error){
             hadException = true;
             pass++;
-            System.out.println(e.getMessage()); 
-
+            System.out.println(error.getMessage()); 
+        
         }
-        if(!hadException) fail++;
+        if(!hadException){ fail++; LOGGER.log(Level.WARNING, "Failed testPushOverflow , expected error got none");
+        }
     }
 
 
